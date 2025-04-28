@@ -8,6 +8,7 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 import { db } from "@/server/db";
 import { env } from "@/env";
 import type { Adapter } from "next-auth/adapters";
+import { compare } from "bcryptjs";
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -49,6 +50,35 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) return null;
+
+        const user = await db.user.findUnique({
+          where: {
+            email: credentials.email,
+          },
+          select: {
+            id: true,
+            email: true,
+            password: true,
+            firstName: true,
+            lastName: true,
+            username: true,
+          },
+        });
+
+        if (!user) {
+          throw new Error("Credentials are invalid");
+        }
+
+        const isPasswordValid = await compare(
+          credentials.password,
+          user.password,
+        );
+
+        if (!isPasswordValid) {
+          throw new Error("Credentials are invalid");
+        }
+
+        return user;
       },
     }),
   ],
