@@ -52,4 +52,8 @@ bun.lock
 yarn.lock
 
 # prisma
-/prisma/client
+/prisma/generated
+
+# tests & playwright
+/test-results
+/playwright-report
