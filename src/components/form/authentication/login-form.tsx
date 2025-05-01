@@ -75,10 +75,10 @@ export function LoginForm({ onLogin, isLoading }: LoginFormProps) {
         {isLoading ? (
           <>
             <Loader2 className="size-4 animate-spin" />
-            <span>Registering...</span>
+            <span>Logging in...</span>
           </>
         ) : (
-          <span>Register</span>
+          <span>Login</span>
         )}
       </Button>
     </form>

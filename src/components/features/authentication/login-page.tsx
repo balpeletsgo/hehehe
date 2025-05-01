@@ -40,7 +40,9 @@ export default function LoginPage() {
         return;
       }
 
-      toast.success("Welcome back!");
+      toast.success("Welcome back!", {
+        duration: 2000,
+      });
       form.reset();
       router.push("/");
     } catch (error) {

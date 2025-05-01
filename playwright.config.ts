@@ -4,19 +4,26 @@ import { defineConfig, devices } from "@playwright/test";
 export default defineConfig({
   testDir: "./tests",
   fullyParallel: true,
-  reporter: "html",
+  reporter: [["json", { outputFile: "playwright-report/report.json" }]],
   use: {
     baseURL: "http://localhost:3000",
     trace: "on-first-retry",
+    video: {
+      mode: "on",
+      size: { width: 1366, height: 768 },
+    },
   },
   projects: [
     {
       name: "chromium",
-      use: { ...devices["Desktop Chrome"] },
+      use: {
+        ...devices["Desktop Chrome"],
+        viewport: { width: 1366, height: 768 },
+      },
     },
   ],
   webServer: {
-    command: "bun run dev",
+    command: "pnpm dev",
     url: "http://localhost:3000",
     reuseExistingServer: !process.env.CI,
   },
