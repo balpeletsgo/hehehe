@@ -51,7 +51,7 @@ export function LoginForm({ onLogin, isLoading }: LoginFormProps) {
             <FormControl>
               <div className="relative">
                 <Input
-                  placeholder="********"
+                  placeholder="Password"
                   type={showPassword ? "text" : "password"}
                   {...field}
                 />

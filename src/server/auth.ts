@@ -66,7 +66,7 @@ export const authOptions: NextAuthOptions = {
         });
 
         if (!user) {
-          throw new Error("Credentials are invalid");
+          throw new Error("Credentials provided are invalid");
         }
 
         const isPasswordValid = await compare(
@@ -75,7 +75,7 @@ export const authOptions: NextAuthOptions = {
         );
 
         if (!isPasswordValid) {
-          throw new Error("Credentials are invalid");
+          throw new Error("Credentials provided are invalid");
         }
 
         return user;
