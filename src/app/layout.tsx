@@ -12,6 +12,8 @@ import {
   TriangleAlertIcon,
   XIcon,
 } from "lucide-react";
+import SessionProvider from "@/providers/session-provider";
+import { SessionChecker } from "@/components/session-checker";
 
 export const metadata: Metadata = {
   title: "Acme Inc",
@@ -45,7 +47,10 @@ export default function RootLayout({
       <body>
         <TRPCReactProvider>
           <HydrateClient>
-            {children}
+            <SessionProvider>
+              <SessionChecker />
+              {children}
+            </SessionProvider>
             <Toaster
               closeButton
               position="top-center"
