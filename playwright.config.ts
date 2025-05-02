@@ -15,11 +15,17 @@ export default defineConfig({
   },
   projects: [
     {
+      name: "setup",
+      testMatch: /.*\.setup\.ts/,
+    },
+    {
       name: "chromium",
       use: {
         ...devices["Desktop Chrome"],
         viewport: { width: 1366, height: 768 },
+        storageState: "./playwright/.auth/user.json",
       },
+      dependencies: ["setup"],
     },
   ],
   webServer: {

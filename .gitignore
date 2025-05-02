@@ -57,3 +57,4 @@ yarn.lock
 # tests & playwright
 /test-results
 /playwright-report
+playwright/.auth
