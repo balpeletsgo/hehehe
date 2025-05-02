@@ -53,6 +53,7 @@ yarn.lock
 
 # prisma
 /prisma/generated
+/prisma/migrations
 
 # tests & playwright
 /test-results
